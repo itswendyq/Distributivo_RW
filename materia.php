@@ -1,11 +1,13 @@
 <?php
-require_once ("C:/xampp/htdocs/Distributivo_RW/php/functions.php");
+require_once ('php/funtions.php');
 $tra=new Trabajo();
+
 if(isset($_POST["grabar"]) and $_POST["grabar"]=="si")
 {
     $tra->addM();
     exit;
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -124,23 +126,23 @@ if(isset($_POST["grabar"]) and $_POST["grabar"]=="si")
                       <th>Editar</th>                        
                       <th>Eliminar</th>
                       </thead>
-                      <tbody>      
+                      <tbody>
                       <?php
                           $tra= new Trabajo();
                           $datos=$tra->get_datosM();
                           for($i=0;$i<sizeof($datos);$i++)
                           {
-                        ?>      
+                        ?>        
                         <tr>                        
                         <td><?php echo $datos[$i]["identificador"];?></td>
                         <td><?php echo $datos[$i]["nombre"];?></td>
                         <td><?php echo $datos[$i]["description"];?></td>
                         <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-success btn-round btn-just-icon btn-sm" data-title="Edit" data-toggle="modal" data-target="#edit" ><i class="material-icons">edit</i></button></p></td>
                         <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-round btn-just-icon btn-sm" data-title="Delete" data-toggle="modal" data-target="#delete" ><i class="material-icons">close</i></button></p></td>
-                        </tr>                        
+                        </tr> 
                         <?php
                         }
-                        ?>
+                        ?>                       
                       </tbody>
                     </table>        
                   </div>
@@ -172,7 +174,7 @@ if(isset($_POST["grabar"]) and $_POST["grabar"]=="si")
                     break;
                 }
             }
-          ?>          
+          ?>                     
           <div class="modal fade" id="new" tabindex="-1" role="dialog" aria-labelledby="new" aria-hidden="true">
             <form name="form" action="" method="post">
               <div class="modal-dialog">

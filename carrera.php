@@ -1,5 +1,5 @@
 <?php
-require_once ("C:/xampp/htdocs/Distributivo_RW/php/functions.php");
+require_once ('php/funtions.php');
 $tra=new Trabajo();
 if(isset($_POST["grabar"]) and $_POST["grabar"]=="si")
 {
