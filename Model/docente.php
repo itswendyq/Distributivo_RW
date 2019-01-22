@@ -45,6 +45,10 @@ if(isset($_POST["grabar"]) and $_POST["grabar"]=="si")
     <link href="../View/vendor/sweet-alert/dist/sweetalert2.csss" rel="stylesheet">
     <link href="../View/vendor/sweet-alert/dist/sweetalert2.min.csss" rel="stylesheet">
 
+  <!-- Table Styles -->
+
+  <link rel="stylesheet" href="../View/css/t_style.css">
+
   </head>
 
   <body id="page-top">
@@ -135,6 +139,7 @@ if(isset($_POST["grabar"]) and $_POST["grabar"]=="si")
                       <th>Descripcion</th>                  
                       <th>Editar</th>                        
                       <th>Eliminar</th>
+                      <th>Disponibilidad</th>
                       </thead>
                       <tbody>
                         <?php
@@ -150,6 +155,8 @@ if(isset($_POST["grabar"]) and $_POST["grabar"]=="si")
                         <td><?php echo $datos[$i]["description"];?></td>
                         <td><a  href="docente_edit.php#?id=<?php echo $datos[$i]["id_maestro"]; ?>"><p data-placement="top" data-toggle="tooltip"  title="Edit"><button class="btn btn-success btn-round btn-just-icon btn-sm" data-title="Edit" data-toggle="modal" data-target="#edit"><i class="material-icons">edit</i></button></p></td>
                         <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-round btn-just-icon btn-sm" data-title="Delete" data-toggle="modal" data-target="#delete" ><i class="material-icons">close</i></button></p></td>
+                        <td><p data-placement="top" data-toggle="tooltip" title="Disponivilidad"><button class="btn btn-warning btn-round btn-just-icon btn-sm" data-title="Disponivilidad" data-toggle="modal" data-target="#Disponivilidad" ><i class="material-icons">date_range</i></button></p></td>
+
                         </tr>                        
                         <?php
                         }
@@ -262,6 +269,257 @@ if(isset($_POST["grabar"]) and $_POST["grabar"]=="si")
             </div>
                   <!-- /.modal-dialog --> 
           </div>
+
+          <!-- Modal Disponivilidad -->
+
+
+
+          <div class="modal fade" id="Disponivilidad" tabindex="-1" role="dialog" aria-labelledby="Disponivilidad" aria-hidden="true">
+          <form name="form" action="" method="post">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title"style="text-align: center">Editar Disponivilidad!</h4>
+                  <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+                <div class="modal-body">
+          
+                  
+<table class="responsive-table responsive-table-input-matrix">
+  <tr>
+    <th></th>
+    <th>Lunes</th>
+    <th>Martes</th>
+    <th>miercoles</th>
+    <th>Jueves</th>
+    <th>Viernes</th>
+
+  </tr>
+  <tr>
+    <td data-th="Día">1°.-  07:00 a 08:00</td>
+    <div class="form-group">
+      <td data-th="One_Monday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Tuestay"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Wednesday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Thurstday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Friday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+  </tr>
+  <tr>
+    <td data-th="Día">2°.-  08:00 a 09:00</td>
+    <div class="form-group">
+      <td data-th="two_Monday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Tuestay"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Wednesday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Thurstday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Friday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+  </tr>
+  <tr>
+    <td data-th="Día">3°.-  09:00 a 10:00</td>
+    <div class="form-group">
+      <td data-th="One_Monday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Tuestay"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Wednesday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Thurstday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Friday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+  </tr>
+  
+  <tr>
+    <td data-th="Día">4°.-  10:00 a 11:00</td>
+    <div class="form-group">
+      <td data-th="One_Monday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Tuestay"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Wednesday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Thurstday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Friday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+  </tr>
+  
+  <tr>
+    <td data-th="Día">5°.-  11:00 a 12:00</td>
+    <div class="form-group">
+      <td data-th="One_Monday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Tuestay"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Wednesday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Thurstday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Friday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+  </tr>
+  <tr>
+    <td data-th="Día">6°.-  12:00 a 13:00</td>
+    <div class="form-group">
+      <td data-th="One_Monday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Tuestay"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Wednesday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Thurstday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Friday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+  </tr>
+  <tr>
+    <td data-th="Día">7°.-  13:00 a 14:00</td>
+    <div class="form-group">
+      <td data-th="One_Monday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Tuestay"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Wednesday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Thurstday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Friday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+  </tr>
+  <tr>
+    <td data-th="Día">8°.-  14:00 a 15:00</td>
+    <div class="form-group">
+      <td data-th="One_Monday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Tuestay"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Wednesday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Thurstday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Friday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+  </tr>
+  <tr>
+    <td data-th="Día">9°.-  15:00 a 16:00</td>
+    <div class="form-group">
+      <td data-th="One_Monday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Tuestay"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Wednesday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Thurstday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Friday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+  </tr>
+  <tr>
+    <td data-th="Día">10°.-  16:00 a 17:00</td>
+    <div class="form-group">
+      <td data-th="One_Monday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Tuestay"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Wednesday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Thurstday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Friday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+  </tr>
+  <tr>
+    <td data-th="Día">11°.-  17:00 a 18:00</td>
+    <div class="form-group">
+      <td data-th="One_Monday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Tuestay"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Wednesday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Thurstday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+    <div class="form-group">
+      <td data-th="One_Friday"><input  class="form-control "  type="checkbox" /></td>
+    </div>
+  </tr>
+ 
+</table>
+
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+  
+
+    <script  src="js/index.js"></script>
+          
+                <div class="modal-footer ">
+                  <input type="hidden" name="grabar1" value="si" />
+                  <input type="hidden" name="id"  value="<?php echo $_GET["id_maestro"]; ?>"/> 
+                  <input type="submit" value="Actualizar" style="width: 100%;" class="btn btn-primary btn-lg" title="Actualizar"/>
+                </div>
+              </div>
+                <!-- /.modal-content --> 
+            </div>
+            
+                  <!-- /.modal-dialog -->
+          </form> 
+          
+        </div>
+          <!-- Modal Disponibilidad -->
+
+
 
           <!-- Modal Eliminar -->
           <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
