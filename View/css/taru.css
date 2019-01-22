@@ -1,0 +1,35 @@
+table.ruleta {
+  border: 3px solid #000000;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.ruleta td, table.ruleta th {
+  border: 1px solid #E98324;
+  padding: 5px 4px;
+}
+table.ruleta tbody td {
+  font-size: 13px;
+}
+table.ruleta thead {
+  background: #E98324;
+  background: -moz-linear-gradient(top, #eea25b 0%, #eb8f3a 66%, #E98324 100%);
+  background: -webkit-linear-gradient(top, #eea25b 0%, #eb8f3a 66%, #E98324 100%);
+  background: linear-gradient(to bottom, #eea25b 0%, #eb8f3a 66%, #E98324 100%);
+  border-bottom: 3px solid #000000;
+}
+table.ruleta thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #000000;
+  text-align: left;
+}
+table.ruleta tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #000000;
+  border-top: 3px solid #000000;
+}
+table.ruleta tfoot td {
+  font-size: 14px;
+}
