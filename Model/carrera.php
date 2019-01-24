@@ -1,12 +1,5 @@
 <?php
-require_once ('add.php');
-$tra=new Trabajo();
-
-if(isset($_POST["grabar"]) and $_POST["grabar"]=="si")
-{
-    $tra->addC();
-    exit;
-}
+require 'crud_carrera.php'
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -112,171 +105,93 @@ if(isset($_POST["grabar"]) and $_POST["grabar"]=="si")
               <a href="../View/index.html">Principal</a>
             </li>
             <li class="breadcrumb-item active">Carrera</li>
-            </ol>
+          </ol>
 
           <!-- TABLAS-->
           <div class="container">
-            <div class="row">    
-              <div class="col-md-12">
-                <h4>Carreras</h4>
-                <div class="col col-xs-6 text-right">
-                    <p data-placement="top" data-toggle="tooltip" title="Edit">
-                      <button class="btn btn-primary btn-round btn-just-icon btn-sm" data-title="New" data-toggle="modal" data-target="#new" >
-                        <i class="material-icons">person</i>
-                      </button>
-                    </p>
+              <div class="row">    
+                <div class="col-md-12">
+                  <h4>Carrera</h4>
+                  <form action="" method="post" enctype="multipart/form-data">
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="exampleModalLabel">Carrera..!</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+
+                          <div class="modal-body">
+                            <input type="hidden" required name="txtId" value="<?php echo $txtId;?>" id="txtId">
+                            <label for="">Nombre:</label>
+                            <input type="text" class="form-control" required name="txtName" value="<?php echo $txtName; ?>" placeholder="" id="txtName" require="">
+                            <br>
+                            <label for="">Identificador:</label>
+                            <input type="text" class="form-control" required name="txtIdent" value="<?php echo $txtIdent; ?>" placeholder="" id="txtIdent" require="">
+                            <br>
+                            <label for="">Descripcion:</label>
+                            <input type="text" class="form-control" required name="txtDescription" value="<?php echo $txtDescription; ?>" placeholder="" id="txtDescription" require="">
+                            <br>
+                          </div>
+
+                          <div class="modal-footer">
+                            <button value="btnAgregar" <?php echo $accionAgregar; ?> class="btn btn-success" type="submit" name="accion">Agregar</button>
+                            <button value="btnModificar" <?php echo $accionModificar; ?> class="btn btn-warning" type="submit" name="accion">Modificar</button>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col col-xs-6 text-right">
+                        <p data-placement="top" data-toggle="tooltip" title="Edit">
+                          <!-- Button trigger modal -->
+                          <button type="button" class="btn btn-round btn-primary" data-toggle="modal" data-target="#exampleModal">
+                          <i class="material-icons">person</i>
+                          </button> 
+                        </p>
+                    </div>                
+                  </form>
                 </div>
+            
                 <div class="table-responsive">
-                  <table id="mytable" class="table table-bordred table-striped">
-                    <thead>                      
-                      <th>Identificador</th>
-                      <th>Nombre</th>
-                      <th>Descripcion</th>                  
-                      <th>Editar</th>                        
-                      <th>Eliminar</th>
-                      </thead>
-                      <tbody>
-                        <?php
-                          $tra= new Trabajo();
-                          $datos=$tra->get_datosC();
-                          for($i=0;$i<sizeof($datos);$i++)
-                          {
-                        ?>      
-                        <tr>                        
-                        <td><?php echo $datos[$i]["identificador"];?></td>
-                        <td><?php echo $datos[$i]["nombre"];?></td>
-                        <td><?php echo $datos[$i]["description"];?></td>
-                        <td><p data-placement="top" data-toggle="tooltip"  title="Edit"><button class="btn btn-success btn-round btn-just-icon btn-sm" data-title="Edit" data-toggle="modal" data-target="#edit"><i class="material-icons">edit</i></button></p></td>
-                        <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-round btn-just-icon btn-sm" data-title="Delete" data-toggle="modal" data-target="#delete" ><i class="material-icons">close</i></button></p></td>
-                        </tr>                        
-                        <?php
-                        }
-                        ?>
-                      </tbody>
-                    </table>        
-                  </div>
+                  <table id="mytable" class="table table-bordred table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Identificador</th>
+                            <th>Nombre</th>
+                            <th>Descripcion</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <?php foreach($listarCarreras as $carrera){ ?>
+                        <tr>
+                            <td><?php echo $carrera['identificador'];?></td>
+                            <td><?php echo $carrera['nombre'];?></td>
+                            <td><?php echo $carrera['description'];?></td>
+                            <td>
+                            <form action="" method="post">
+                            <input type="hidden" name="txtId" value="<?php echo $carrera['id_carrera']; ?>">
+                            
+                            <button type="submit" class="btn btn-success btn-round btn-just-icon btn-sm" value="Seleccionar" name="accion"><i class="material-icons">edit</i></button>
+                            <button value="btnEliminar" onclick="return Confirmar('¿Esta seguro que desea eliminar el registro?');" class="btn btn-danger btn-round btn-just-icon btn-sm" type="submit" name="accion"><i class="material-icons">close</i></button>
+                            
+                            </form>
+                            </td>
+                        </tr>
+                    <?php }?>
+                  </table>
                 </div>
               </div>
-          </div>
+            </div>         
           
-          <!-- Modal Crear -->
-          <?php
-            if(isset($_GET["m"]))
-            {
-                switch($_GET["m"])
-                {
-                    case '1':
-                        ?>
-                        <script type="text/javascript">
-                          Swal('Ocurrio un Error.!!','Campos vacios','error')                         
-                              
-                          then((value) => {
-                              window.location.href="carrera.php";
-                            });
-                          
-                          </script>
-                        <?php
-                    break;
-                    case '2':
-                        ?>
-                        <script type="text/javascript">
-                           Swal('Registro existoso!','Se guardaron correctamente los datos','success')                         
-                              
-                              then((value) => {
-                                  window.location.href="carrera.php";
-                                });
-                        </script>
-                        <?php
-                    break;
-                }
-            }
-          ?>        
-          <div class="modal fade" id="new" tabindex="-1" role="dialog" aria-labelledby="new" aria-hidden="true">
-            <form name="form" action="" method="post">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                  <h4 class="modal-title"style="text-align: center">Crear Nuevo Registro!</h4>
-                  <button type="button" class="close" data-dismiss="modal">×</button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="form-group">
-                      <label >Nombre:</label>
-                      <input class="form-control " type="text" name="name">                
-                    </div>
-                    <div class="form-group">
-                      <label >Identificador:</label>
-                      <input class="form-control " type="text"  name="ident">
-                    </div>
-                    <div class="form-group">
-                      <label >Descripcion:</label>
-                      <input class="form-control " type="text"  name="description">                
-                    </div>
-                  </div>                                   
-                  <div class="modal-footer ">
-                    <input type="hidden" name="grabar" value="si" />
-                    <input type="submit" value="Crear" style="width: 100%;" class="btn btn-primary btn-lg" title="Crear" />
-                  </div>
-                </div>
-                  <!-- /.modal-content --> 
-              </div>
-
-                    <!-- /.modal-dialog --> 
-          </form>
-          </div>
-          <!-- Modal Editar -->
-          <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                  <h4 class="modal-title custom_align" id="Heading">Editar Registro</h4>
-                </div>
-
-                <div class="modal-body">
-                    <div class="form-group">
-                      <label >Identificador</label>
-                      <input class="form-control " type="text">
-                    </div>
-                    <div class="form-group">
-                      <label >Nombre</label>              
-                      <input class="form-control " type="text">
-                    </div>
-                    <div class="form-group">
-                      <label >Identificador</label>
-                      <input class="form-control " type="text">                
-                    </div>
-                  </div>
-                
-                <div class="modal-footer ">
-                  <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Actualizar</button>
-                </div>
-              </div>
-                <!-- /.modal-content --> 
-            </div>
-                  <!-- /.modal-dialog --> 
-          </div>
-
-          <!-- Modal Eliminar -->
-          <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                  <h4 class="modal-title custom_align" id="Heading">Eliminar Registro</h4>
-                </div>
-                <div class="modal-body">
-                  <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Estás seguro de eliminar este registro?</div> 
-                </div>
-                <div class="modal-footer ">
-                      <button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Si</button>
-                      <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
-                </div>
-              </div>
             <!-- /.modal-content --> 
             </div>
-          <!-- /.modal-dialog --> 
-          </div>
+          
+          </div>       
         <!-- /.container-fluid -->
         </div>
       <!-- /.content-wrapper -->
@@ -318,6 +233,16 @@ if(isset($_POST["grabar"]) and $_POST["grabar"]=="si")
     <!-- Custom scripts for all pages-->
     <script src="../View/js/sb-admin.min.js"></script>
     
+    <?php if($mostrarModal){?>
+            <script>
+              $('#exampleModal').modal('show');
+            </script>
+          <?php } ?>
+          <script>
+      function Confirmar(Mensaje) {
+        return(confirm(Mensaje))?true:false;        
+      }
+    </script>
   </body>
 
 </html>
