@@ -1,5 +1,8 @@
 <?php
-require 'crud_materia.php'
+require 'crud_docente.php';
+
+$P_ID_Docente = "";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +15,7 @@ require 'crud_materia.php'
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Distributivo Admin - Materia</title>
+    <title>Distributivo Admin - Docente</title>
     <!-- Bootstrap core CSS-->
     <link href="../View/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -43,22 +46,26 @@ require 'crud_materia.php'
   <body id="page-top">
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-      <a class="navbar-brand mr-1" href="../View/index.html">Menu</a>
+      <a class="navbar-brand mr-1" href="index.html">Menu</a>
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
       </button>
 
       <!-- Navbar Search -->
-      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+      <form id="buscador" name="buscador" method="post" href="index.html" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
           <div class="input-group-append">
-            <button class="btn btn-primary" type="button">
+            <button type="submit"class="btn btn-primary btn-block">
               <i class="fas fa-search"></i>
             </button>
+            
           </div>
+          
         </div>
       </form>
+    
+
 
       <!-- Navbar -->
       <ul class="navbar-nav ml-auto ml-md-0">
@@ -104,94 +111,99 @@ require 'crud_materia.php'
             <li class="breadcrumb-item">
               <a href="../View/index.html">Principal</a>
             </li>
-            <li class="breadcrumb-item active">Materia</li>
+            <li class="breadcrumb-item active">Docente Horas</li>
           </ol>
 
-            <!-- TABLAS-->
+          <!-- table -->
+
           <div class="container">
-              <div class="row">    
-                <div class="col-md-12">
-                  <h4>Docentes</h4>
-                  <form action="" method="post" enctype="multipart/form-data">
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+            <div class="row">    
+              <div class="col-md-12">
+                  
+                <h4>Docentes Horas</h4>
+                <?php
+              
 
-                          <div class="modal-header">
-                            <h4 class="modal-title" id="exampleModalLabel">Materia..!</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
+if(!isset($_GET['id_docente']))
+{
+  $P_ID_Docente= $_POST['id_docente'];    
+}
+else
+{
+  $P_ID_Docente= $_POST['id_docente'];    
+  }
+                ?>
+                <div>
+                <p data-placement="top" data-toggle="tooltip" title="Edit">
 
-                          <div class="modal-body">
-                            <input type="hidden" required name="txtId" value="<?php echo $txtId;?>" id="txtId">
-                            <label for="">Nombre:</label>
-                            <input type="text" class="form-control" required name="txtName" value="<?php echo $txtName; ?>" placeholder="" id="txtName" require="">
-                            <br>
-                            <label for="">Identificador:</label>
-                            <input type="text" class="form-control" required name="txtIdent" value="<?php echo $txtIdent; ?>" placeholder="" id="txtIdent" require="">
-                            <br>
-                            <label for="">Descripcion:</label>
-                            <input type="text" class="form-control" required name="txtDescription" value="<?php echo $txtDescription; ?>" placeholder="" id="txtDescription" require="">
-                            <br>
-                          </div>
-
-                          <div class="modal-footer">
-                            <button value="btnAgregar" <?php echo $accionAgregar; ?> class="btn btn-success" type="submit" name="accion">Agregar</button>
-                            <button value="btnModificar" <?php echo $accionModificar; ?> class="btn btn-warning" type="submit" name="accion">Modificar</button>
-                            
-                          </div>
+                    <form action="reportes.php" method="post"  class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                        <div class="input-group">
+                            <select class='form-control' name='id_docente' id = 'id_docente' required>
+                                <?php
+                                    foreach($listarMaestros as $maestro){
+                                ?>
+                                <option value="<?php echo $maestro['id_maestro']; ?>"><?php echo $maestro['nombre']; ?></option>			
+                                <?php
+                                    }
+                                ?>
+                            </select>	
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
                         </div>
-                      </div>
-                    </div>
-                    <div class="col col-xs-6 text-right">
-                        <p data-placement="top" data-toggle="tooltip" title="Edit">
-                          <!-- Button trigger modal -->
-                          <button type="button" class="btn btn-round btn-primary" data-toggle="modal" data-target="#exampleModal">
-                          <i class="material-icons">person</i>
-                          </button> 
-                        </p>
-                    </div>                
-                  </form>
+                    </form>
+                                </p>
                 </div>
-            
-                <div class="table-responsive">
-                  <table id="mytable" class="table table-bordred table-hover">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Identificador</th>
-                            <th>Nombre</th>
-                            <th>Descripcion</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <?php foreach($listarMaterias as $materia){ ?>
-                        <tr>
-                            <td><?php echo $materia['identificador'];?></td>
-                            <td><?php echo $materia['nombre'];?></td>
-                            <td><?php echo $materia['description'];?></td>
-                            <td>
-                            <form action="" method="post">
-                            <input type="hidden" name="txtId" value="<?php echo $materia['id_materia']; ?>">
-                            
-                            <button type="submit" class="btn btn-success btn-round btn-just-icon btn-sm" value="Seleccionar" name="accion"><i class="material-icons">edit</i></button>
-                            <button value="btnEliminar" onclick="return Confirmar('¿Esta seguro que desea eliminar el registro?');" class="btn btn-danger btn-round btn-just-icon btn-sm" type="submit" name="accion"><i class="material-icons">close</i></button>
-                            
-                            </form>
-                            </td>
-                        </tr>
-                    <?php }?>
-                  </table>
-                </div>
+                
+                
               </div>
-            </div>         
+              <div class="table-responsive">
+                <table id="mytable" class="table table-bordred table-hover">
+                  <thead class="thead-dark">
+                      <tr>
+                          <th>Maesto</th>
+                          <th>Materia</th>
+                          <th>Carrera</th>
+                          <th>Semestre</th>
+                          <th>Malla</th>
+                      </tr>
+                  </thead>
+                  
+                  <?php 
+                  $sentencia=$dbh->prepare("SELECT 
+                    CONCAT(MAE.nombre,' ', MAE.apellido) AS maestro,
+                    MAT.nombre as materia,
+                    CAR.nombre as carrera,
+                    MM.semestre as semestre,
+                    MAL.nombre as malla
+                  FROM distibutivo_docente DD 
+                    INNER JOIN maestro MAE on MAE.id_maestro = DD.id_maestro
+                    INNER JOIN malla_materia MM on MM.id_malla_materia =DD.id_malla_materia
+                    INNER JOIN malla MAL on MAL.id_malla = MM.id_malla 
+                    INNER JOIN materia MAT on MAT.id_materia = MM.id_materia 
+                    INNER JOIN carrera CAR on CAR.id_carrera = MAL.id_carrera
+                  WHERE MAE.isactive = 'Y' AND
+                  MAE.id_maestro = '".$P_ID_Docente."'");
+                  $sentencia->execute();
+                  $listarMaestrosdd=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+                        foreach($listarMaestrosdd as $maestro){ ?>
+                      <tr>
+                          <td><?php echo $maestro['maestro'];?></td>
+                          <td><?php echo $maestro['materia']; ?></td>
+                          <td><?php echo $maestro['carrera'];?></td>
+                          <td><?php echo $maestro['semestre'];?></td>
+                          <td><?php echo $maestro['semestre'];?></td>
+                      </tr>
+                  <?php }?>
+                </table>
           
-            <!-- /.modal-content --> 
+              
             </div>
-          <!-- /.modal-dialog --> 
           </div>
+          
+
         <!-- /.container-fluid -->
         </div>
       <!-- /.content-wrapper -->

@@ -90,7 +90,7 @@ require 'crud_carrera.php'
           </div>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="../View/index.html">
+            <a class="nav-link" href="reportes.php">
               <i class="fas fa-fw fa-tachometer-alt"></i>
               <span>Reportes</span>
             </a>

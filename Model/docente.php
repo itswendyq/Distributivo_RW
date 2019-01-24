@@ -1,6 +1,9 @@
 <?php
-require 'crud_docente.php'
+require 'crud_docente.php';
+include ('../Controller/conexion.php');
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,7 +93,7 @@ require 'crud_docente.php'
           </div>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="reportes.php">
               <i class="fas fa-fw fa-tachometer-alt"></i>
               <span>Reportes</span>
             </a>
@@ -112,7 +115,7 @@ require 'crud_docente.php'
               <div class="col-md-12">
                 <h4>Docentes</h4>
                 <form action="" method="post" enctype="multipart/form-data">
-                  <!-- Modal -->
+                  <!-- Modal  Edit-->
                   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
@@ -148,6 +151,45 @@ require 'crud_docente.php'
                       </div>
                     </div>
                   </div>
+                 <!-- Modal  Edit -->
+                   <!-- Modal  disponibilidad-->
+                   <div class="modal fade" id="disponibilidad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+
+                        <div class="modal-header">
+                          <h4 class="modal-title" id="exampleModalLabel">Docente..!</h4>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+
+                        <div class="modal-body">
+                          <input type="hidden" required name="txtId" value="<?php echo $txtId;?>" id="txtId">
+                          <label for="">Nombre:</label>
+                          <input type="text" class="form-control" required name="txtName" value="<?php echo $txtName; ?>" placeholder="" id="txtName" require="">
+                          <br>
+                          <label for="">Apellido:</label>
+                          <input type="text" class="form-control" required name="txtLastname" value="<?php echo $txtLastname; ?>" placeholder="" id="txtLastname" require="">
+                          <br>
+                          <label for="">Cédula:</label>
+                          <input type="text" class="form-control" required name="txtIdent" value="<?php echo $txtIdent; ?>" placeholder="" id="txtIdent" require="">
+                          <br>
+                          <label for="">Descripcion:</label>
+                          <input type="text" class="form-control" required name="txtDescription" value="<?php echo $txtDescription; ?>" placeholder="" id="txtDescription" require="">
+                          <br>
+                        </div>
+
+                        <div class="modal-footer">
+                          <button value="btnAgregar" <?php echo $accionAgregar; ?> class="btn btn-success" type="submit" name="accion">Agregar</button>
+                          <button value="btnModificar" <?php echo $accionModificar; ?> class="btn btn-warning" type="submit" name="accion">Modificar</button>
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                 <!-- Modal  Disponibilidad -->
+
                   <div class="col col-xs-6 text-right">
                       <p data-placement="top" data-toggle="tooltip" title="Edit">
                         <!-- Button trigger modal -->
@@ -182,7 +224,8 @@ require 'crud_docente.php'
                           
                           <button type="submit" class="btn btn-success btn-round btn-just-icon btn-sm" value="Seleccionar" name="accion"><i class="material-icons">edit</i></button>
                           <button value="btnEliminar" onclick="return Confirmar('¿Esta seguro que desea eliminar el registro?');" class="btn btn-danger btn-round btn-just-icon btn-sm" type="submit" name="accion"><i class="material-icons">close</i></button>
-                          
+                          <button type="submit" class="btn btn-success btn-round btn-just-icon btn-sm" value="Seleccionar" name="accion"><i class="btn-warning material-icons">date_range</i></button>
+
                           </form>
                           </td>
                       </tr>
